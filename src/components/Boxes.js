@@ -4,11 +4,12 @@ const Boxes = ({
   qtUser,
   usersTotalMales,
   usersTotalFemales,
-  usersTotalAge,
-  usersAverageAge,
+  ageTotal,
   apiResults,
+  averageAge,
+  totalGender,
 }) => {
-  // console.log(apiResults.results);
+  console.log(totalGender());
   return (
     <div className="boxes-container">
       <div className="boxes-card">
@@ -16,11 +17,11 @@ const Boxes = ({
           <h1>{qtUser} usuário(s) encontrado(s)</h1>
         ) : (
           <h1>Nenhum usuário filtrado</h1>
-          )}
-        {apiResults.results && 
+        )}
+        {apiResults && (
           <ul>
-          {apiResults.results.map((item) => {
-            console.log(apiResults.results);
+            {apiResults.map((item) => {
+              // console.log(apiResults.results);
               return (
                 <li key={item.email}>
                   <div>
@@ -33,7 +34,7 @@ const Boxes = ({
               );
             })}
           </ul>
-        }
+        )}
       </div>
       <div className="boxes-card">
         {qtUser ? (
@@ -41,8 +42,8 @@ const Boxes = ({
             <h1>Estatísticas</h1>
             <p>Sexo masculino: {usersTotalMales}</p>
             <p>Sexo feminino: {usersTotalFemales}</p>
-            <p>Soma das idades: {usersTotalAge}</p>
-            <p>Média das idades: {usersAverageAge}</p>
+            <p>Soma das idades: {ageTotal()}</p>
+            <p>Média das idades: {averageAge()}</p>
           </>
         ) : (
           <h1>Nada a ser exibido</h1>

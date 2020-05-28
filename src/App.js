@@ -24,23 +24,35 @@ function App() {
   const handleSubmit = (e) => {
     e.preventDefault();
     const stringToFilter = e.target[0].value.toLowerCase();
-    console.log(stringToFilter);
 
     const filteredResults = apiResults.results.filter((item) => {
       const fullName = `${item.name.first} ${item.name.last}`.toLowerCase();
-      console.log(fullName);
-      let bool = true;
-
-      console.log(fullName.every(stringToFilter));
-      // if (fullName.every(stringToFilter)) {
-        
-      //   bool = true;
-      // }
-
-      return bool;
+      return fullName.includes(stringToFilter);
     });
 
     setApiResultsFiltered(filteredResults);
+  };
+
+  const handleGenderCount = () => {
+    return apiResultsFiltered.reduce((acc, val) => {
+      
+      if (val.gender === 'male') {
+        return console.log(val.gender);
+      } else {
+        return console.log(val.gender);
+      }
+    }, {
+      male: 0,
+      female: 0,
+    });
+  };
+
+  const handleAgeSum = () => {
+    return apiResultsFiltered.reduce((acc, val) => val.dob.age + acc, 0);
+  };
+
+  const handleAgeAverage = () => {
+    return (handleAgeSum() / apiResultsFiltered.length).toFixed(2);
   };
 
   return (
@@ -49,7 +61,10 @@ function App() {
       <Boxes
         apiResults={apiResultsFiltered}
         className="boxes-container"
-        qtUser={1}
+        qtUser={apiResultsFiltered.length}
+        ageTotal={handleAgeSum}
+        averageAge={handleAgeAverage}
+        totalGender={handleGenderCount}
       />
     </>
   );
