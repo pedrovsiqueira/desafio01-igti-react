@@ -33,18 +33,12 @@ function App() {
     setApiResultsFiltered(filteredResults);
   };
 
-  const handleGenderCount = () => {
-    return apiResultsFiltered.reduce((acc, val) => {
-      
-      if (val.gender === 'male') {
-        return console.log(val.gender);
-      } else {
-        return console.log(val.gender);
-      }
-    }, {
-      male: 0,
-      female: 0,
-    });
+  const handleGenderCountMale = () => {
+    return apiResultsFiltered.filter((item) => item.gender === "male").length;
+  };
+
+  const handleGenderCountFemale = () => {
+    return apiResultsFiltered.filter((item) => item.gender === "female").length;
   };
 
   const handleAgeSum = () => {
@@ -64,7 +58,8 @@ function App() {
         qtUser={apiResultsFiltered.length}
         ageTotal={handleAgeSum}
         averageAge={handleAgeAverage}
-        totalGender={handleGenderCount}
+        totalGenderMale={handleGenderCountMale}
+        totalGenderFemale={handleGenderCountFemale}
       />
     </>
   );

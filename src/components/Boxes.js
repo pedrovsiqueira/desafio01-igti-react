@@ -2,14 +2,12 @@ import React from "react";
 
 const Boxes = ({
   qtUser,
-  usersTotalMales,
-  usersTotalFemales,
   ageTotal,
   apiResults,
   averageAge,
-  totalGender,
+  totalGenderMale,
+  totalGenderFemale
 }) => {
-  console.log(totalGender());
   return (
     <div className="boxes-container">
       <div className="boxes-card">
@@ -40,8 +38,8 @@ const Boxes = ({
         {qtUser ? (
           <>
             <h1>Estatísticas</h1>
-            <p>Sexo masculino: {usersTotalMales}</p>
-            <p>Sexo feminino: {usersTotalFemales}</p>
+            <p>Sexo masculino: {totalGenderMale()}</p>
+            <p>Sexo feminino: {totalGenderFemale()}</p>
             <p>Soma das idades: {ageTotal()}</p>
             <p>Média das idades: {averageAge()}</p>
           </>
